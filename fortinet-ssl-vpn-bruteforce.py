@@ -27,11 +27,11 @@ def Logout(url, cookies):
         pass
 
     return
-
-def CheckIfResponsive(url):
+    
+def CheckIfFortinet(url):
     try:
-        response = requests.get(url, timeout=timeOut, headers=headers, proxies=proxies, verify=False)
-        if response.status_code == 200:
+        response = requests.get(url + "/remote/login?lang=en", timeout=timeOut, headers=headers, proxies=proxies, verify=False)
+        if response.status_code == 200 and "fortinet" in response.text:
             return True
     except Exception:
         pass
